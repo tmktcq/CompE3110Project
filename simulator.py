@@ -20,8 +20,14 @@ def main():
         (9  ≤  dividend  length  ≤  25  and  5  ≤  divisor  length  ≤ 13)
     '''
 
-def restoring(dividend, divisor): 
-    placeholder = "empty" 
+def restoring(dividend, divisor):
+
+    i = len(divisor) # this is equal to the amout of shifts we will  have
+    B = '0' + divisor
+    NotB = onesComplement(B)
+    while( i > 0 ):
+        A,Q,E = shl(dividend)
+        add(A,NotB)
 
 def nonrestoring(): 
     placeholder = "empty"    
@@ -32,11 +38,14 @@ def bin2dec(binary):
         decimal = decimal*2 + int(digit)
     return decimal
 
-def shiftLeft(D):
-    D += " "
-    eBit = D[0]
-    D= D[1:]
-    return D, eBit
+def shl(dividend):
+
+    E = dividend[0]
+    A = dividend[1:int(len(dividend)/2)]
+    Q = dividend[int(len(dividend)/2): len(dividend)]
+    Q += 'x' #placeholder for substract string.
+
+    return A , Q , E
     
 def sub(D,B): # Fix this
     '''Add in Inverse here '''
