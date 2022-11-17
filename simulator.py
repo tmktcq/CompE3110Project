@@ -1,4 +1,4 @@
-from collections import deque
+import math
 
 
 def main(): 
@@ -20,14 +20,25 @@ def main():
         (9  ≤  dividend  length  ≤  25  and  5  ≤  divisor  length  ≤ 13)
     '''
 
-def restoring(dividend, divisor):
+def restoring(dividend, divisor): #put in print statements later
 
     i = len(divisor) # this is equal to the amout of shifts we will  have
     B = '0' + divisor
     NotB = onesComplement(B)
     while( i > 0 ):
-        A,Q,E = shl(dividend)
-        add(A,NotB)
+        A,Q= shl(dividend)
+        SavedA = A
+        A = add(A,NotB)
+        if(A[0] == 0):
+            Q-= '_'
+            Q+= '1'
+        else:
+            A = SavedA
+            Q-= '_'
+            Q+= '0'
+
+        i += 1
+        
 
 def nonrestoring(): 
     placeholder = "empty"    
@@ -39,13 +50,12 @@ def bin2dec(binary):
     return decimal
 
 def shl(dividend):
-
-    E = dividend[0]
-    A = dividend[1:int(len(dividend)/2)]
-    Q = dividend[int(len(dividend)/2): len(dividend)]
-    Q += 'x' #placeholder for substract string.
-
-    return A , Q , E
+    
+    A = dividend[0:(math.ceil((len(dividend)/2))+1)] #should be from [1:]
+    Q = dividend[int(len(dividend)/2)+1: len(dividend)]
+    Q += "_"
+    
+    return A , Q 
     
 def sub(D,B): # Fix this
     '''Add in Inverse here '''
