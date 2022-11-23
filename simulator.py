@@ -23,16 +23,17 @@ def main():
 def restoring(dividend, divisor): #Put in Print Statments later. 
 
     i = len(divisor)-1 # this is equal to the amout of shifts we will  have
-    NotB = onesComplement(B)
+    NotB = onesComplement(B) #does 1 and twos comp 
     while( i > 0 ):
         if(i != len(divisor)-1):
             dividend = A + Q
+        print("Dividend: "+dividend)
         E,A,Q= shl(dividend)
         A = E+A
-        print("shift: "+A,Q  )
+        print("Shift: " + A,Q)
         SavedA = A
         A = add(A,NotB)
-        print("Add: " + A)
+        print("Add:   " + A)
         if(A[0] == '0'):
             print("A>B no restore")
             Q = Q.replace('_','1')
@@ -48,10 +49,10 @@ def restoring(dividend, divisor): #Put in Print Statments later.
 def nonrestoring(dividend, divisor): 
     i = len(divisor)-1 # this is equal to the amout of shifts we will  have
     NotB = onesComplement(B)
-    while( i > 0 ):
+    E = "0"
+    while( i > 0):
         if(i != len(divisor)-1):
             dividend = A + Q
-        print("Start of loop "+dividend)
     
         if(dividend[0] == "1"):
             E,A,Q= shl(dividend)
@@ -72,7 +73,7 @@ def nonrestoring(dividend, divisor):
         i-=1
     if(A[0] == "1"):
         A = add(A,B)
-    return A[1:len(A)] , Q 
+    return A[0], A[1:len(A)] , Q 
         
 def bin2dec(binary):
     decimal = 0
@@ -147,6 +148,7 @@ def add(num1,num2):
 
 dividend = "111100001" # has to be EAQ 
 B = "01111"
+
 print(restoring(dividend, B))
 print()
 print(nonrestoring(dividend,B))
