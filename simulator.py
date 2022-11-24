@@ -21,30 +21,35 @@ def main():
     '''
 
 def restoring(dividend, divisor): #Put in Print Statments later. 
-
+    sign = int(dividend[0]) ^ int(divisor[0])
+    sign = str(sign)
+    dividend = "0" + dividend[1:]
+    divisor = '0' + divisor[1:]
     i = len(divisor)-1 # this is equal to the amout of shifts we will  have
-    NotB = onesComplement(B) #does 1 and twos comp 
+    NotB = onesComplement(divisor) #does 1 and twos comp 
+    print("  " + dividend + " = Dividend  " + divisor + " = divisor" )
+    print()
     while( i > 0 ):
         if(i != len(divisor)-1):
             dividend = A + Q
-        print("Dividend: "+dividend)
+            print( "  " +dividend + " = Dividend")
         E,A,Q= shl(dividend)
         A = E+A
-        print("Shift: " + A,Q)
+        print( "  " + A,Q + "   Shift left")
         SavedA = A
         A = add(A,NotB)
-        print("Add:   " + A)
+        print(" +" + NotB)
+        print(" =" + A , end ="  ")
         if(A[0] == '0'):
-            print("A>B no restore")
-            Q = Q.replace('_','1')
-            
+            print(" E=0, A>B no restore Q0=1")
+            Q = Q.replace('_','1')   
         else:
             A = SavedA
             Q = Q.replace('_','0')
-            print("A<B restore")
+            print("E=1, A<0 restore Q0=0")
         i -= 1
 
-    return A[1:len(A)] , Q 
+    return A[1:len(A)] , (sign+Q)  # adds sign into the Quotient reminder is always > 0
 
 def nonrestoring(dividend, divisor): 
     i = len(divisor)-1 # this is equal to the amout of shifts we will  have
@@ -144,10 +149,10 @@ def add(num1,num2):
     result = result[::-1]
     return result
 
-#shift using slice(1,len(string)) add in what E is with string+= 0 or 1
+#shift using slice(1,len(string)) add in what E is with string += 0 or 1
 
-dividend = "111100001" # has to be EAQ 
-B = "01111"
+dividend = "001001101" # has to be EAQ 
+B = "11011"
 
 print(restoring(dividend, B))
 print()
