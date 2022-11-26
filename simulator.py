@@ -151,8 +151,8 @@ def add(num1,num2):
 
 #shift using slice(1,len(string)) add in what E is with string += 0 or 1
 
-dividend = "001001101" # has to be EAQ 
-B = "11011"
+dividend = "1111111000001" # has to be EAQ 
+B = "1111111"
 
 print(restoring(dividend, B))
 print()
