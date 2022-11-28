@@ -1,9 +1,5 @@
 import math
 
-def sign(Qs, Ds):
-    sign = int(Qs[0]) ^ int(Ds[0])
-    sign = str(sign)
-    return sign 
 
 def main(): 
     D = "101"
@@ -27,6 +23,7 @@ def main():
 def restoring(dividend, divisor): #Put in Print Statments later. 
     sign = int(dividend[0]) ^ int(divisor[0])
     sign = str(sign)
+    divisor = "0" + divisor[1::]
     divisor = "0" + divisor[1::]
     i = len(divisor)-1 # this is equal to the amout of shifts we will  have
     NotB = onesComplement(divisor) #does 1 and twos comp 
@@ -52,6 +49,7 @@ def restoring(dividend, divisor): #Put in Print Statments later.
             print("E=1, A<0 restore Q0=0")
         i -= 1
 
+    return A[1:len(A)] , (sign+Q)  # adds sign into the Quotient 
     return A[1:len(A)] , (sign+Q)  # adds sign into the Quotient 
 
 def nonrestoring(dividend, divisor): 
@@ -100,6 +98,8 @@ def shl(dividend):
 def sub(D,B): # Fix this
     '''Add in Inverse here '''
     #Put adding after getting 2's complemnt. 
+    return 0 
+
     return 0 
 
 def onesComplement(num):
@@ -154,6 +154,8 @@ def add(num1,num2):
 
 #shift using slice(1,len(string)) add in what E is with string += 0 or 1
 
+dividend = "1000011100001000100100000" # has to be EAQ 
+B = "0000011100000"
 dividend = "1000011100001000100100000" # has to be EAQ 
 B = "0000011100000"
 
