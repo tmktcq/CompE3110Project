@@ -154,8 +154,6 @@ def add(num1,num2):
 
 dividend = "1000011100001000100100000" # has to be EAQ 
 B = "0000011100000"
-dividend = "1000011100001000100100000" # has to be EAQ 
-B = "0000011100000"
 
 print(restoring(dividend, B))
 print()
