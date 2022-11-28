@@ -35,6 +35,10 @@ def restoring(dividend, divisor): #Put in Print Statments later.
     sign = int(dividend[0]) ^ int(divisor[0])
     sign = str(sign)
     divisor = "0" + divisor[1::]
+
+    if(divideOverflow(dividend,divisor)):
+        return -1 
+    
     i = len(divisor)-1 # this is equal to the amout of iterations we will  have
     NotB = onesComplement(divisor) #does 1 and twos comp 
     while( i > 0 ):
@@ -67,6 +71,10 @@ def nonrestoring(dividend, divisor):
     sign = str(sign)
     divisor = "0" + divisor[1::]
     dividend = "0" + dividend[1::]
+
+    if(divideOverflow(dividend,divisor)):
+        return -1 
+    
     i = len(divisor)-1 # this is equal to the amout of shifts we will  have
     NotB = onesComplement(divisor)
     E = "0"
@@ -115,9 +123,9 @@ def divideOverflow(dividend, divisor):
     decDivisor = bin2dec((divisor[1::]))
     decA = bin2dec((A))
     if(decA >= decDivisor):
-        return -1 
+        return True
     else:
-        return 0 
+        return False
 
 def shl(dividend):
     E = dividend[1]
