@@ -231,8 +231,8 @@ def add(num1,num2):
     return result
 
 nonRestAddSubCount = 0 
-dividend = "0010110110010" # has to be EAQ 
-B = "1011011"
+dividend = "1111111000001" # has to be EAQ 
+B = "1111111"
 #metricsTable.field_names = ["Length of Dividend", "Length of Divisor" ,"Iterations", "Non-Restoring Add/Sub Count" , "Restoring Add/Sub Count"]
 
 

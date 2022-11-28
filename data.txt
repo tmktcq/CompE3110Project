@@ -2,7 +2,7 @@
 001001101 11011 77/-11 = -7 = Q                                                                             |    correct (restoring + nonrestoring)
 000010101 10011 21/-3 = -7                                                                                  |    correct (restoring + nonrestoring)
 100001101 01101 -13/13 = -1                                                                                 |    correct (restoring + nonrestoring)
-1111111000001 1111111 -4033/-63 =                                                                           |    incorrect (restoring + nonrestoring)
+1111111000001 1111111 -4033/-63 =                                                                           |    incorrect (restoring + nonrestoring) overflow
 0010110110010 1011011 1458/-27 = -54 = 1110110                                                              |    correct (restoring + nonrestoring)
 1000010111101 1000111 -189/-7 = 27 = 0011011                                                                |    correct (restoring)
 1100111100010 1110111 -2530/-55 = 46 = 0101110                                                              |    correct (restoring)
@@ -17,4 +17,4 @@
 0111111111110000000000001 0111111111111 16769025/4095 = 0111111111111                                       |    correct (restoring)
 1000111000110111000111001 1010101010101 -1863225/-1365 = 1365 = 010101010101                                |    correct (restoring)
 1000000111110001100011001 1000011111111 -254745/-255 = 999 = 0001111100111                                  |    correct (restoring)
-1000011100001000100100000 0000011100000 -921888/224 = -4115.57142857 1_1000000010011 R01100000              |    incorrect(restoring)
+1000011100001000100100000 0000011100000 -921888/224 = -4115.57142857 1_1000000010011 R01100000              |    incorrect(restoring) overflow
