@@ -110,6 +110,15 @@ def bin2dec(binary):
         decimal = decimal*2 + int(digit)
     return decimal
 
+def divideOverflow(dividend, divisor):
+    A = dividend[1:(math.ceil((len(dividend)/2)))] #should be from [1:]
+    decDivisor = bin2dec((divisor[1::]))
+    decA = bin2dec((A))
+    if(decA >= decDivisor):
+        return -1 
+    else:
+        return 0 
+
 def shl(dividend):
     E = dividend[1]
     A = dividend[2:(math.ceil((len(dividend)/2))+1)] #should be from [1:]
