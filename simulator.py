@@ -24,7 +24,6 @@ def restoring(dividend, divisor): #Put in Print Statments later.
     sign = int(dividend[0]) ^ int(divisor[0])
     sign = str(sign)
     divisor = "0" + divisor[1::]
-    divisor = "0" + divisor[1::]
     i = len(divisor)-1 # this is equal to the amout of shifts we will  have
     NotB = onesComplement(divisor) #does 1 and twos comp 
     print("  " + dividend + " = Dividend  " + divisor + " = divisor" )
@@ -49,7 +48,6 @@ def restoring(dividend, divisor): #Put in Print Statments later.
             print("E=1, A<0 restore Q0=0")
         i -= 1
 
-    return A[1:len(A)] , (sign+Q)  # adds sign into the Quotient 
     return A[1:len(A)] , (sign+Q)  # adds sign into the Quotient 
 
 def nonrestoring(dividend, divisor): 
