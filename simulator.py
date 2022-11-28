@@ -1,5 +1,11 @@
 import math
+from prettytable import PrettyTable # pip install prettytable to use library 
 
+restoringTable = PrettyTable()
+nonrestoringTable = PrettyTable()
+
+restoringTable.field_names = ["E", "A" , "Q" , "Notes"]
+nonrestoringTable.field_names = ["E", "A" , "Q" , "Notes"]
 
 def main(): 
     D = "101"
@@ -24,31 +30,28 @@ def restoring(dividend, divisor): #Put in Print Statments later.
     sign = int(dividend[0]) ^ int(divisor[0])
     sign = str(sign)
     divisor = "0" + divisor[1::]
-    i = len(divisor)-1 # this is equal to the amout of shifts we will  have
+    i = len(divisor)-1 # this is equal to the amout of iterations we will  have
     NotB = onesComplement(divisor) #does 1 and twos comp 
-    print("  " + dividend + " = Dividend  " + divisor + " = divisor" )
-    print()
     while( i > 0 ):
         if(i != len(divisor)-1):
             dividend = A + Q
-            print( "  " +dividend + " = Dividend")
         E,A,Q= shl(dividend)
+        restoringTable.add_row([E,A,Q, "SHL"])
         A = E+A
-        print( "  " + A,Q + "   Shift left")
         SavedA = A
         A = add(A,NotB)
-        print(" +" + NotB)
-        print(" =" + A , end ="  ")
+        restoringTable.add_row([NotB[0],NotB[1::],"", "Add ~B"])
+
         if(A[0] == '0'):
-            print(" E=0, A>B no restore Q0=1")
             Q = Q.replace('_','1')   
+            restoringTable.add_row([A[0],A[1::],Q, "E=0, A>B no restore Q0=1"])
         else:
             A = SavedA
             Q = Q.replace('_','0')
-            print("E=1, A<0 restore Q0=0")
+            restoringTable.add_row([A[0],A[1::],Q, "E=1, A<0 restore Q0=0"])
         i -= 1
-
-    return A[1:len(A)] , (sign+Q)  # adds sign into the Quotient 
+    restoringTable.add_row(["",A[1::],(sign+Q), "Reminder and Quotient"])
+    restoringTable.add_row(["", binToHexa((A[1::])), binToHexa(sign+Q), "Results in Hexidecimal" ])
 
 def nonrestoring(dividend, divisor): 
     i = len(divisor)-1 # this is equal to the amout of shifts we will  have
@@ -93,6 +96,61 @@ def shl(dividend):
     
     return E, A , Q 
     
+def binToHexa(n):
+    bnum = int(n)
+    temp = 0
+    mul = 1
+      
+    # counter to check group of 4
+    count = 1
+      
+    # char array to store hexadecimal number
+    hexaDeciNum = ['0'] * 100
+      
+    # counter for hexadecimal number array
+    i = 0
+    while bnum != 0:
+        rem = bnum % 10
+        temp = temp + (rem*mul)
+          
+        # check if group of 4 completed
+        if count % 4 == 0:
+            
+            # check if temp < 10
+            if temp < 10:
+                hexaDeciNum[i] = chr(temp+48)
+            else:
+                hexaDeciNum[i] = chr(temp+55)
+            mul = 1
+            temp = 0
+            count = 1
+            i = i+1
+              
+        # group of 4 is not completed
+        else:
+            mul = mul*2
+            count = count+1
+        bnum = int(bnum/10)
+          
+    # check if at end the group of 4 is not
+    # completed
+    if count != 1:
+        hexaDeciNum[i] = chr(temp+48)
+          
+    # check at end the group of 4 is completed
+    if count == 1:
+        i = i-1
+
+    final = ""
+    while(i >=0):
+        final += hexaDeciNum[i]
+        i = i-1
+       
+    if(final == ""):
+        final = "0"
+    return final    
+
+
 def sub(D,B): # Fix this
     '''Add in Inverse here '''
     #Put adding after getting 2's complemnt. 
@@ -150,11 +208,11 @@ def add(num1,num2):
     result = result[::-1]
     return result
 
-#shift using slice(1,len(string)) add in what E is with string += 0 or 1
+dividend = "001001101" # has to be EAQ 
+B = "11011"
 
-dividend = "1000011100001000100100000" # has to be EAQ 
-B = "0000011100000"
-
-print(restoring(dividend, B))
+restoring(dividend, B)
+print()
+print(restoringTable)
 print()
 print(nonrestoring(dividend,B))
