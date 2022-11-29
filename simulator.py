@@ -11,25 +11,6 @@ nonrestoringTable.field_names = ["E", "A" , "Q" , "Notes"]
 metricsTable.field_names = ["Length of Dividend", "Length of Divisor" ,"Iterations", "Non-Restoring Add/Sub Count" , "Restoring Add/Sub Count"]
 
 
-def main(): 
-    D = "101"
-    sum = add(D,D)
-    print(sum)
-    '''Ask professor if length can be an issue
-    while(yes):
-        dividend = input("input the dividend")
-        divisor = input("input the divisor")
-        restoring(dividend, divisor)
-        Usercontinue = input("Y/N")
-        if Usercontinue == 'Y':
-            yes = True
-        else:
-            yes = False
-    #Make a Function to check for divide overflow 
-    Takes in two binary signed numbers 
-        (9  ≤  dividend  length  ≤  25  and  5  ≤  divisor  length  ≤ 13)
-    '''
-
 def restoring(dividend, divisor): #Put in Print Statments later. 
     restAddSubCount = 0
     sign = int(dividend[0]) ^ int(divisor[0])
@@ -37,7 +18,8 @@ def restoring(dividend, divisor): #Put in Print Statments later.
     divisor = "0" + divisor[1::]
 
     if(divideOverflow(dividend,divisor)):
-        return -1 
+        restoringTable.add_row([" Divide Overflow has occured"," First half of A>=B","", ""])
+        return "Divide Overflow"
     
     i = len(divisor)-1 # this is equal to the amout of iterations we will  have
     NotB = onesComplement(divisor) #does 1 and twos comp 
@@ -73,7 +55,8 @@ def nonrestoring(dividend, divisor):
     dividend = "0" + dividend[1::]
 
     if(divideOverflow(dividend,divisor)):
-        return -1 
+        nonrestoringTable.add_row([" Divide Overflow has occured"," First half of A>=B","", ""])
+        return "Divide Overflow"
     
     i = len(divisor)-1 # this is equal to the amout of shifts we will  have
     NotB = onesComplement(divisor)
@@ -248,30 +231,30 @@ def add(num1,num2):
     return result
 
 nonRestAddSubCount = 0 
-dividend = "1111111000001" # has to be EAQ 
-B = "1111111"
+dividend = "010100011" # has to be EAQ 
+B = "01011"
 #metricsTable.field_names = ["Length of Dividend", "Length of Divisor" ,"Iterations", "Non-Restoring Add/Sub Count" , "Restoring Add/Sub Count"]
 
 
 print("\n\n\n")
 
 restAddSubCount = restoring(dividend, B)
-print("+----------------------------------------+")
-print("|                                        |")
-print("|          Restoring Algorithm           |")
-print("|                                        |")
-print("+----------------------------------------+")
+print("+---------------------------------------------+")
+print("|                                             |")
+print("|             Restoring Algorithm             |")
+print("|                                             |")
+print("+---------------------------------------------+")
 
 print(restoringTable)
 
 print("\n\n")
 
 nonRestAddSubCount = nonrestoring(dividend,B)
-print("+----------------------------------------+")
-print("|                                        |")
-print("|        Non-Restoring Algorithm         |")
-print("|                                        |")
-print("+----------------------------------------+")
+print("+-------------------------------------------+")
+print("|                                           |")
+print("|           Non-Restoring Algorithm         |")
+print("|                                           |")
+print("+-------------------------------------------+")
 print(nonrestoringTable)
 
 print()
